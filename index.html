@@ -1,3 +1,12 @@
+<head>
+
+</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco's portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
 <script>
     let projects = [
         {
@@ -17,12 +26,28 @@
                 "https://github.com/Edmi6163/points_collision_detection",
         },
     ];
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const projectsContainer = document.getElementById("projects-container");
+        projects.forEach(project => {
+            const projectElement = document.createElement("a");
+            projectElement.href = project.repoLink;
+            projectElement.className = "project-bubble bg-windowLight shadow-md rounded-lg overflow-hidden max-w-sm";
+            projectElement.innerHTML = `
+                <div class="p-4">
+                    <h2 class="text-xl font-bold text-white">${project.name}</h2>
+                    <p class="text-white">${project.description}</p>
+                </div>
+            `;
+            projectsContainer.appendChild(projectElement);
+        });
+    });
 </script>
 
 <div class="bg-night min-h-screen flex flex-col items-center py-8 text-white">
     <nav class="bg-windowLight text-black py-2 w-full">
         <div class="container mx-auto text-center">
-            <p> This website will be a continous work in progress. </p>
+            <p> This website will be a continuous work in progress. </p>
         </div>
     </nav>
     <h1 class="text-4xl font-bold mb-4 text-windowLight-bright">
@@ -34,28 +59,17 @@
     >
         <p class="text-lg">
             I'm a Computer Science student loving mixing development and
-            creativty, for this reason my dream is to be a game developer (I
-            think). Currently i'm trying finish my bachelor's in computer
+            creativity, for this reason my dream is to be a game developer (I
+            think). Currently I'm finishing my bachelor's in computer
             science and doing research on quantum machine learning. I enjoy
             tackling challenging problems and learning new technologies. Here
             are some of my projects I've completed in the last few years. <br />
-            Ah, yeah I almost forgot to mention that i'm also a bike punk enjoier
-            constantly listening to music, who loves going out at night. <br />
+             <br />
         </p>
         <div class="arrow"></div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-        {#each projects as project}
-            <a
-                href={project.repoLink}
-                class="project-bubble bg-windowLight shadow-md rounded-lg overflow-hidden max-w-sm"
-            >
-                <div class="p-4">
-                    <h2 class="text-xl font-bold text-white">{project.name}</h2>
-                    <p class="text-white">{project.description}</p>
-                </div>
-            </a>
-        {/each}
+    <div id="projects-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+            <!-- call  -->
     </div>
 </div>
